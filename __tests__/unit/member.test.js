@@ -7,21 +7,6 @@ import { expect } from "chai";
 import { Member, validateMember } from "../../src/models/member.js";
 
 describe("Member Model", () => {
-  before(() => {
-    // Code de configuration avant tous les tests
-  });
-
-  after(() => {
-    // Code de nettoyage après tous les tests
-  });
-
-  beforeEach(() => {
-    // Code à exécuter avant chaque test individuel
-  });
-
-  afterEach(() => {
-    // Code à exécuter après chaque test individuel
-  });
 
   it("should validate member correctly", () => {
     const validMember = new Member(
