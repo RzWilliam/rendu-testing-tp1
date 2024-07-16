@@ -8,6 +8,23 @@ import { expect } from "chai";
 import app from "../../src/app.js";
 
 describe("Member Integration Tests", () => {
+
+  before(() => {
+    // Code de configuration avant tous les tests
+  });
+
+  after(() => {
+    // Code de nettoyage après tous les tests
+  });
+
+  beforeEach(() => {
+    // Code à exécuter avant chaque test individuel
+  });
+
+  afterEach(() => {
+    // Code à exécuter après chaque test individuel
+  });
+
   it("should register a new member", async () => {
     const response = await request(app)
       .post("/members")
@@ -23,3 +40,4 @@ describe("Member Integration Tests", () => {
     expect(response.body.email).to.equal("john.doe@example.com");
   });
 });
+

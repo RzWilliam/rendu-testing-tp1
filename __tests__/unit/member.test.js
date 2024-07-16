@@ -7,11 +7,37 @@ import { expect } from "chai";
 import { Member, validateMember } from "../../src/models/member.js";
 
 describe("Member Model", () => {
+  before(() => {
+    // Code de configuration avant tous les tests
+  });
+
+  after(() => {
+    // Code de nettoyage après tous les tests
+  });
+
+  beforeEach(() => {
+    // Code à exécuter avant chaque test individuel
+  });
+
+  afterEach(() => {
+    // Code à exécuter après chaque test individuel
+  });
+
   it("should validate member correctly", () => {
-    const validMember = new Member("John", "Doe", "john.doe@example.com", "password123");
+    const validMember = new Member(
+      "John",
+      "Doe",
+      "john.doe@example.com",
+      "password123"
+    );
     expect(validMember.isValid()).to.be.true;
 
-    const invalidMember = new Member("", "Doe", "john.doe@example.com", "password123");
+    const invalidMember = new Member(
+      "",
+      "Doe",
+      "john.doe@example.com",
+      "password123"
+    );
     expect(invalidMember.isValid()).to.be.false;
 
     const externalValidMember = {
@@ -31,4 +57,3 @@ describe("Member Model", () => {
     expect(validateMember(externalInvalidMember)).to.be.false;
   });
 });
-

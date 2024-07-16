@@ -13,6 +13,14 @@ describe("Order System Tests", function () {
     await driver.quit();
   });
 
+  beforeEach(async () => {
+    // Code à exécuter avant chaque test individuel
+  });
+
+  afterEach(async () => {
+    // Code à exécuter après chaque test individuel
+  });
+
   it("should complete the order process", async () => {
     // Step 1: Register a new member
     await driver.get("http://localhost:3000/memberRegistration.html");

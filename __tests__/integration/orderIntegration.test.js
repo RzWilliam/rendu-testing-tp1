@@ -8,6 +8,23 @@ import { expect } from "chai";
 import app from "../../src/app.js";
 
 describe("Order Integration Tests", () => {
+
+  before(() => {
+    // Code de configuration avant tous les tests
+  });
+
+  after(() => {
+    // Code de nettoyage après tous les tests
+  });
+
+  beforeEach(() => {
+    // Code à exécuter avant chaque test individuel
+  });
+
+  afterEach(() => {
+    // Code à exécuter après chaque test individuel
+  });
+
   it("should create a new order for a member", async () => {
     const memberResponse = await request(app).post("/members").send({
       firstName: "John",
@@ -25,3 +42,4 @@ describe("Order Integration Tests", () => {
     expect(orderResponse.body.order.memberId).to.equal(memberId);
   });
 });
+
