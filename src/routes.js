@@ -1,7 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from 'url';
-import { registerMember, getMember } from "./controllers/memberController.js";
+import { registerMember, getMember, getAllMembers } from "./controllers/memberController.js";
 import { createOrder, getOrder } from "./controllers/orderController.js";
 
 const router = express.Router();
@@ -28,6 +28,7 @@ router.get('/orderConfirmation.html', (req, res) => {
 
 // Routes pour les membres
 router.post("/members", registerMember);
+router.get("/members", getAllMembers)
 router.get("/members/:id", getMember);
 
 // Routes pour les commandes

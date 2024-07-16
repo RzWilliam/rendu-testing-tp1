@@ -18,7 +18,8 @@ describe("Member Integration Tests", () => {
         password: "password123",
       });
 
-    expect(response.statusCode).to.equal(201);
+    expect(response.status).to.equal(201);
+    expect(response.body).to.have.property("email");
     expect(response.body.email).to.equal("john.doe@example.com");
   });
 });

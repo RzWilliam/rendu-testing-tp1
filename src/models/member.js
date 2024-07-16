@@ -16,16 +16,20 @@ class Member {
     );
   }
 
-  findAll() {
-    return members;
-  }
-
   save() {
     members.push(this);
   }
 
   static findById(id) {
     return members.find((member) => member.id === parseInt(id));
+  }
+
+  static findAll() {
+    return members;
+  }
+
+  static findLast(){
+    return members[members.length - 1];
   }
 }
 

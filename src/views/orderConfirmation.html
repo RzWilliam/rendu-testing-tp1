@@ -4,11 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmation de la Commande</title>
+    <script>
+        async function confirmOrder(event) {
+            event.preventDefault();
+
+            // Example data - replace with actual order details
+            const orderDetails = {
+                orderId: 12345,
+                items: [
+                    { product: 'Chapeau', quantity: 1 },
+                    { product: 'T-shirt', quantity: 2 },
+                    { product: 'Pantalon', quantity: 1 },
+                    { product: 'Sneakers', quantity: 1 }
+                ]
+            };
+
+            const confirmationDetails = document.getElementById('confirmationDetails');
+            confirmationDetails.innerHTML = `Commande ID: ${orderDetails.orderId}<br>` +
+                orderDetails.items.map(item => `${item.product} (quantité: ${item.quantity})`).join('<br>');
+            confirmationDetails.style.display = 'block';
+        }
+    </script>
 </head>
-<body>
+<body onload="confirmOrder(event)">
     <h1>Confirmation de la Commande</h1>
-    <div id="confirmationDetails">
-        <!-- Détails de la commande confirmée -->
-    </div>
+    <div id="confirmationDetails" style="display:none; color: green; margin-top: 20px;"></div>
 </body>
 </html>

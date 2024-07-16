@@ -4,10 +4,66 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sélection des Produits</title>
+    <script>
+      async function selectProducts(event) {
+        event.preventDefault();
+
+        const headwear = document.getElementById("headwear").value;
+        const tops = document.getElementById("tops").value;
+        const bottoms = document.getElementById("bottoms").value;
+        const shoes = document.getElementById("shoes").value;
+
+        const items = [
+          { product: "Chapeau", value: headwear },
+          { product: "T-shirt", value: tops },
+          { product: "Pantalon", value: bottoms },
+          { product: "Sneakers", value: shoes },
+        ];
+
+        const orderSummary = document.getElementById("orderSummary");
+        orderSummary.innerHTML = items
+          .map((item) => `${item.product}: ${item.value}`)
+          .join("<br>");
+        orderSummary.style.display = "block";
+
+        const confirmOrderButton = document.getElementById("confirmOrder");
+        confirmOrderButton.style.display = "block";
+
+        localStorage.setItem("selectedItems", JSON.stringify(items));
+      }
+
+      async function confirmOrder(event) {
+        event.preventDefault();
+
+        const selectedItems = JSON.parse(localStorage.getItem("selectedItems"));
+
+        const response = await fetch("/orders", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ memberId: 1, items: selectedItems }), // Use the actual member ID
+        });
+
+        const result = await response.json();
+        const confirmationDetails = document.getElementById(
+          "confirmationDetails"
+        );
+
+        if (response.status === 201) {
+          confirmationDetails.innerText = "Commande confirmée avec succès";
+          confirmationDetails.style.display = "block";
+        } else {
+          confirmationDetails.innerText =
+            "Erreur lors de la confirmation de la commande";
+          confirmationDetails.style.display = "block";
+        }
+      }
+    </script>
   </head>
   <body>
     <h1>Sélection des Produits</h1>
-    <form id="productForm">
+    <form id="productForm" onsubmit="selectProducts(event)">
       <label for="headwear">Couvre-chef:</label>
       <select id="headwear" name="headwear">
         <option value="chapeau">Chapeau</option>
@@ -30,5 +86,17 @@
       ><br /><br />
       <button type="submit">Valider la sélection</button>
     </form>
+    <div id="orderSummary" style="display: none; margin-top: 20px"></div>
+    <button
+      id="confirmOrder"
+      style="display: none; margin-top: 20px"
+      onclick="confirmOrder(event)"
+    >
+      Confirmer la Commande
+    </button>
+    <div
+      id="confirmationDetails"
+      style="display: none; color: green; margin-top: 20px"
+    ></div>
   </body>
 </html>

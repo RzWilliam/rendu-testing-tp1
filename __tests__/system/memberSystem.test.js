@@ -1,8 +1,3 @@
-/**
- * Couverture de Tests :
- * - Automatisation de l'inscription d'un membre via le formulaire
- * - Vérification de l'affichage du message de confirmation
- */
 import { Builder, By, until } from 'selenium-webdriver';
 import { expect } from 'chai';
 
@@ -27,6 +22,7 @@ describe('Member System Tests', function() {
     await driver.findElement(By.id('password')).sendKeys('password123');
     await driver.findElement(By.tagName('button')).click();
 
+    const confirmationMessage = await driver.wait(until.elementLocated(By.id('confirmationMessage')), 10000).getText();
+    expect(confirmationMessage).to.equal('Inscription réussie');
   });
 });
-

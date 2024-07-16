@@ -6,7 +6,7 @@ export const createOrder = (req, res) => {
 
   if (newOrder.isValid()) {
     newOrder.save();
-    res.status(201).json(newOrder);
+    res.status(201).json({ message: "Commande confirmée", order: newOrder });
   } else {
     res.status(400).json({ error: "Invalid order data" });
   }

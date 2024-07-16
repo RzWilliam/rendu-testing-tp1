@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Révision de la Commande</title>
-  </head>
-  <body>
+    <script>
+        async function reviewOrder(event) {
+            event.preventDefault();
+
+            // Suppose we get the selected items from the previous step (just an example)
+            const items = [
+                { product: 'Chapeau', quantity: 1 },
+                { product: 'T-shirt', quantity: 2 },
+                { product: 'Pantalon', quantity: 1 },
+                { product: 'Sneakers', quantity: 1 }
+            ];
+
+            const orderSummary = document.getElementById('orderSummary');
+            orderSummary.innerHTML = items.map(item => `${item.product} (quantité: ${item.quantity})`).join('<br>');
+            orderSummary.style.display = 'block';
+
+            const confirmOrderButton = document.getElementById('confirmOrder');
+            confirmOrderButton.style.display = 'block';
+        }
+    </script>
+</head>
+<body onload="reviewOrder(event)">
     <h1>Révision de la Commande</h1>
-    <div id="orderSummary">
-      <!-- Récapitulatif des produits sélectionnés -->
-    </div>
-    <button id="confirmOrder">Confirmer la Commande</button>
-  </body>
-</html>
-orderConfirmation.html html Copier le code
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Confirmation de la Commande</title>
-  </head>
-  <body>
-    <h1>Confirmation de la Commande</h1>
-    <div id="confirmationDetails">
-      <!-- Détails de la commande confirmée -->
-    </div>
-  </body>
+    <div id="orderSummary" style="display:none; margin-top: 20px;"></div>
+    <button id="confirmOrder" style="display:none; margin-top: 20px;" onclick="location.href='orderConfirmation.html'">Confirmer la Commande</button>
+</body>
 </html>

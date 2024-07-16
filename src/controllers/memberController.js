@@ -6,7 +6,7 @@ export const registerMember = (req, res) => {
 
   if (newMember.isValid()) {
     newMember.save();
-    res.status(201).json(newMember);
+    res.status(201).json(newMember); // Return the newly created member
   } else {
     res.status(400).json({ error: "Invalid member data" });
   }
@@ -24,5 +24,6 @@ export const getMember = (req, res) => {
 };
 
 export const getAllMembers = (req, res) => {
-  res.status(200).json(Member.findAll());
-}
+  const members = Member.findAll();
+  res.status(200).json(members);
+};
