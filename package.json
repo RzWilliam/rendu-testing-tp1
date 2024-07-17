@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "node src/app.js",
-    "test": "mocha \"__tests__/**/*.test.js\" --exit"
+    "test": "mocha \"__tests__/**/*.test.js\" --exit",
+    "selenium": "node seleniumTest.js"
   },
   "author": "",
   "license": "ISC",
